@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ Quiz</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    #quiz-container {
+      width: 960px;
+      height: 540px;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      text-align: center;
+    }
+    #progress-bar {
+      width: 100%;
+      height: 20px;
+      background: #ddd;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    #progress {
+      width: 0;
+      height: 100%;
+      background: #4caf50;
+      transition: width 0.3s;
+    }
+    .question {
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+    .options{
+      display: flex;
+      justify-content: center;
+    }
+    .options button {
+      display: block;
+      margin: 10px 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .options button.correct {
+      background-color: #4caf50;
+      color: #fff;
+    }
+    .options button.incorrect {
+      background-color: #f44336;
+      color: #fff;
+    }
+    #comment {
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+    #score {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+    .question img{
+      width: 300px;
+    }
+
+  </style>
+</head><body><div id="quiz-container">
+<div id="progress-bar">
+<div id="progress"></div>
+</div>
+<div id="quiz">
+<p id="question-number">Question 1/10</p>
+<p class="question"></p>
+<div class="options"></div>
+<div id="comment"></div>
+</div>
+<div id="score" style="display: none;"></div>
+</div>
+<p><script>
+    const questions = [
+      { 
+        image: "pic1.gif",
+        question: "What is this diddyblud doing?", 
+        options: ["Calc", "Bluddy", "Speed", "Hehe"], 
+        answer: 0, 
+        comment: "Diddyblud is on the calc, Einstein."
+      },
+      { 
+        image: "pic2.png",
+        question: "What dog is this?", 
+        options: ["Pibble", "Dribble", "Gmail", "Butterdawg"], 
+        answer: 3, 
+        comment: "BUTTERDAWGGGGGGGG!!!!!!!"
+      },
+       { 
+        image: "pic3.jpg",
+        question: "What did you eat for brekkie?", 
+        options: ["Nothing", "Yahoo", "pmo", "67"], 
+        answer: 3, 
+        comment: "ok i dont care."
+      },
+      // Add more questions here in the same format, array first item starts from 0
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const question = questions[currentQuestion];
+      $("#question-number").text(`Question ${currentQuestion + 1}/${questions.length}`);
+      $(".question").html("<img src= '"+question.image+" '/><br>"+question.question);
+      $(".options").empty();
+      question.options.forEach((option, index) => {
+        $(".options").append(`<button data-index="${index}">${option}</button>`);
+      });
+      $("#comment").text("");
+    }
+
+    function updateProgressBar() {
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+      $("#progress").css("width", `${progress}%`);
+    }
+
+    $(document).ready(function () {
+      loadQuestion();
+      updateProgressBar();
+
+      $(".options").on("click", "button", function () {
+        const selected = $(this).data("index");
+        const question = questions[currentQuestion];
+
+        $("button").attr("disabled","disabled");
+
+        if (selected === question.answer) {
+          $(this).addClass("correct");
+          score++;
+        } else {
+          $(this).addClass("incorrect");
+          $(`.options button[data-index='${question.answer}']`).addClass("correct");
+        }
+
+        $("#comment").text(question.comment);
+
+        setTimeout(() => {
+          currentQuestion++;
+          if (currentQuestion < questions.length) {
+            loadQuestion();
+            updateProgressBar();
+          } else {
+            $("#quiz").hide();
+            //check if score is less than 1
+            if(score<=1){
+              $("#score").show().text(`You scored ${score} out of ${questions.length}...You can do better than that poo poo`);
+            } else {
+              $("#score").show().text(`You scored ${score} out of ${questions.length}! Well donee!`); 
+            }
+
+            //$("#score").show().text(`You scored ${score} out of ${questions.length}!`);
+          }
+        }, 2000);
+      });
+    });
+  </script></p></body></html>
