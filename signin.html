@@ -1,0 +1,25 @@
+<!-- Diagnostic visualiser (place near where your visualiser should be, e.g. line ~13) -->
+<div id="visualiser-diagnostic" style="
+  position:relative;
+  width:320px;
+  height:80px;
+  margin:12px auto;
+  background: linear-gradient(90deg,#0b0 10%, transparent 70%);
+  border:2px solid rgba(124,255,158,.35);
+  color:#001b07;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  z-index:9999;
+">
+  VISUALISER (diagnostic)
+</div>
+
+<!-- Helpful inline checklist for debugging:
+  1) If you see the green 'VISUALISER (diagnostic)' box, the element is rendering.
+  2) If your real visualiser is missing: check DevTools → Console for JS errors.
+  3) Inspect the real visualiser element: check computed styles for display/opacity, and z-index/order.
+  4) If it's behind overlays, increase its z-index or move it later in DOM.
+  5) If size is zero, ensure width/height or parent layout allows it to expand.
+-->

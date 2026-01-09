@@ -1,0 +1,612 @@
+/* index1.css */
+
+/* --------- RESET / BASE --------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+  color: #e9f7ee;
+  overflow: hidden; /* no page scroll */
+  background: #050806;
+}
+
+/* --------- BACKGROUND VIDEO (FIXED) --------- */
+.bgVideo{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bgVideo__vid{
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.45;
+}
+
+.bgVideo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.35);
+}
+
+/* --------- BACKGROUND (GRID/GLOW) --------- */
+.bg{
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 500px at 40% 40%, rgba(68,255,148,0.12), transparent 60%),
+    radial-gradient(700px 500px at 70% 25%, rgba(68,255,148,0.08), transparent 60%),
+    radial-gradient(900px 600px at 50% 80%, rgba(68,255,148,0.06), transparent 60%),
+    rgba(6,10,7,0.35);
+}
+
+.bg__grid{
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, #000 65%, transparent 100%);
+}
+
+.bg__glow{
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.55;
+}
+.bg__glow--a{
+  width: 520px; height: 520px;
+  left: 10%; top: 15%;
+  background: rgba(68,255,148,0.12);
+}
+.bg__glow--b{
+  width: 420px; height: 420px;
+  right: 12%; bottom: 10%;
+  background: rgba(68,255,148,0.10);
+}
+
+/* --------- 960x540 STAGE (CENTERED) --------- */
+.stage{
+  width: 960px;
+  height: 540px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(68,255,148,0.22);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 30px 90px rgba(0,0,0,0.6);
+
+  background: rgba(3,6,4,0.52);
+  backdrop-filter: blur(10px);
+
+  position: absolute;
+}
+
+/* NEW: make .page absolute layers inside the stage */
+.stage{ position: absolute; }
+.stage{ position: absolute; }
+.stage{ position: absolute; }
+
+/* (Fix: ensure the stage is a positioning context for pages) */
+.stage{ position: absolute; }
+.stage{ position: absolute; }
+
+/* The real fix (keep only this one): */
+.stage{ position: absolute; }
+.stage{ position: absolute; }
+
+/* --- Actually set it correctly (final) --- */
+.stage{
+  position: absolute;
+}
+
+/* --------- PAGES (UPDATED: smooth transitions) --------- */
+.page{
+  width: 100%;
+  height: 100%;
+  padding: 28px;
+
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+  transition: opacity .28s ease, transform .28s ease;
+  will-change: opacity, transform;
+}
+
+.page.is-active{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.page.is-leaving{
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .page{ transition: none; transform: none; }
+  .page.is-leaving{ transform: none; }
+}
+
+/* --------- BUTTONS --------- */
+.btn{
+  border: 0;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 15px;
+  transition: transform .12s ease, background .12s ease, opacity .12s ease;
+}
+.btn:active{ transform: translateY(1px) scale(0.99); }
+
+.btn--primary{
+  color: #08110b;
+  background: #45ff95;
+  box-shadow: 0 10px 24px rgba(69,255,149,0.20);
+}
+.btn--primary:hover{ background: #34f08a; }
+
+.btn--ghost{
+  background: rgba(255,255,255,0.06);
+  color: #e9f7ee;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.btn--ghost:hover{ background: rgba(255,255,255,0.09); }
+
+.btnIcon{ margin-left: 8px; }
+
+/* --------- LANDING --------- */
+.heroCard{
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.55)),
+    radial-gradient(800px 420px at 50% 10%, rgba(69,255,149,0.12), transparent 60%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 44px 60px;
+  text-align: center;
+}
+
+.heroPill{
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(69,255,149,0.25);
+  background: rgba(69,255,149,0.10);
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 11px;
+  color: #45ff95;
+  text-transform: uppercase;
+}
+
+.dot{
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: #45ff95;
+  box-shadow: 0 0 18px rgba(69,255,149,0.7);
+}
+
+.heroTitle{
+  margin: 10px 0 0 0;
+  line-height: 0.92;
+  font-size: 74px;
+  letter-spacing: -1px;
+}
+.heroTitle__top{ display:block; color:#fff; font-weight: 950; }
+.heroTitle__bottom{
+  display:block;
+  font-weight: 950;
+  color: #45ff95;
+  text-shadow: 0 0 22px rgba(69,255,149,0.22);
+}
+
+.heroSub{
+  margin: 6px 0 12px;
+  max-width: 640px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.5;
+}
+
+.heroBtns{
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.heroNote{
+  margin-top: 14px;
+  font-size: 12px;
+  color: rgba(233,247,238,0.55);
+}
+
+/* --------- LANDING MODAL --------- */
+.modal{
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.55);
+}
+.modal.is-open{ display: flex; }
+
+.modal__panel{
+  width: 520px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(8,12,9,0.90);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+  padding: 18px 18px 14px;
+}
+.modal__title{ margin: 0 0 10px; font-size: 18px; }
+.modal__list{
+  margin: 0 0 14px;
+  padding-left: 18px;
+  color: rgba(233,247,238,0.78);
+  line-height: 1.55;
+}
+
+/* --------- INSTRUCTIONS --------- */
+.panel{
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.26);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelTop{
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+}
+
+.panelTop__left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+.panelTop__label{ opacity: 0.9; }
+
+.panelTop__right{
+  opacity: 0.65;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.panelBody{
+  flex: 1;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.28);
+  margin-top: 12px;
+  padding: 18px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* ✅ Keeps the bottom content pinned */
+.panelBottom{
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+
+.h2{
+  margin: 2px 0 0;
+  font-size: 34px;
+  letter-spacing: -0.5px;
+}
+
+
+
+.typewriter{
+  margin: 0;
+  height: 100px;       /* tweak if you want more/less space */
+  overflow: hidden;   /* stops pushing content downward */
+  color: rgba(233,247,238,0.78);
+  line-height: 1.55;
+  font-size: 16px;
+}
+
+
+.typewriter .hl{ color: #45ff95; font-weight: 900; }
+
+.stepsGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.stepCard{
+  border-radius: 14px;
+  border: 1px solid rgba(69,255,149,0.18);
+  background: rgba(69,255,149,0.05);
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 74px;
+}
+
+.stepNum{
+  width: 34px; height: 34px;
+  border-radius: 999px;
+  background: rgba(69,255,149,0.18);
+  border: 1px solid rgba(69,255,149,0.25);
+  display: grid;
+  place-items: center;
+  font-weight: 950;
+  color: #45ff95;
+}
+
+.stepTitle{ font-weight: 950; }
+.stepDesc{ font-size: 13px; color: rgba(233,247,238,0.72); margin-top: 2px; }
+
+.reminder{
+  margin-top: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(69,255,149,0.18);
+  background: rgba(69,255,149,0.06);
+  padding: 10px 12px;
+  color: rgba(233,247,238,0.78);
+  font-size: 13px;
+}
+
+.panelBtns{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* --------- LOGIN (MATCH IMAGE) --------- */
+.loginFrame{
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sysbar{
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  color: rgba(233,247,238,0.80);
+  font-size: 11px;
+  letter-spacing: 0.6px;
+}
+
+.sysbar__left, .sysbar__right{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sysIcon{
+  width: 18px; height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(69,255,149,0.35);
+  box-shadow: 0 0 14px rgba(69,255,149,0.18);
+}
+
+.sysText{ color: rgba(69,255,149,0.9); font-weight: 800; }
+.sysTiny{ opacity: 0.8; }
+
+.sysDot{
+  width: 4px; height: 4px;
+  border-radius: 999px;
+  background: rgba(233,247,238,0.4);
+}
+
+.chip{
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(69,255,149,0.10);
+  border: 1px solid rgba(69,255,149,0.22);
+  color: rgba(69,255,149,0.95);
+  font-weight: 900;
+  font-size: 10px;
+}
+
+.loginCard{
+  margin: auto;
+  width: 420px;
+  border-radius: 16px;
+  border: 1px solid rgba(69,255,149,0.20);
+  background: rgba(0,0,0,0.30);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 22px 70px rgba(0,0,0,0.55);
+  padding: 18px 18px 14px;
+  position: relative;
+}
+
+.lockBadge{
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(69,255,149,0.22);
+  background: rgba(69,255,149,0.08);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 8px;
+  box-shadow: 0 0 22px rgba(69,255,149,0.18);
+}
+.lockIcon{ font-size: 18px; opacity: 0.9; }
+
+.loginTitle{
+  margin: 0;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 950;
+  letter-spacing: -0.4px;
+}
+
+.loginSub{
+  margin: 4px 0 14px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(233,247,238,0.60);
+}
+
+.field{ margin-top: 6px; }
+
+.fieldLabel{
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: rgba(69,255,149,0.85);
+  margin-bottom: 8px;
+}
+
+.fieldRow{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+}
+
+.fieldIcon{ opacity: 0.7; }
+
+.fieldInput{
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: rgba(233,247,238,0.92);
+  font-size: 14px;
+}
+
+.fieldInput::placeholder{ color: rgba(233,247,238,0.35); }
+
+.loginBtn{
+  width: 100%;
+  margin-top: 14px;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 14px;
+  font-weight: 950;
+  background: #45ff95;
+  color: #08110b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 14px 30px rgba(69,255,149,0.20);
+  transition: transform .12s ease, background .12s ease;
+}
+
+.loginBtn:hover{ background: #34f08a; }
+.loginBtn:active{ transform: translateY(1px) scale(0.99); }
+.loginBtnIcon{ font-weight: 950; }
+
+.loginMeta{
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: rgba(233,247,238,0.55);
+}
+
+.footerPill{
+  margin: 12px auto 6px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,120,120,0.20);
+  background: rgba(255,120,120,0.06);
+  color: rgba(233,247,238,0.68);
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.warn{ color: rgba(255,120,120,0.85); }
+
+/* --------- SMALL HELPERS --------- */
+.hidden{ display: none !important; }
+
+.panelBody,
+.panelTop,
+.heroCard,
+.loginFrame,
+.loginCard{
+  color: #e9f7ee;
+}
+
+#tw,
+.typewriter,
+.typewriter *{
+  color: rgba(233,247,238,0.90) !important;
+}
+
+.profileMain,
+.profileContent,
+.leftColumn{
+  height: auto !important;
+}

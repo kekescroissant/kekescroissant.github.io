@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instalkgram — Profile Inspection</title>
+  <link rel="stylesheet" href="index2.css" />
+</head>
+
+<body>
+  <!-- looping background video -->
+  <div class="bgVideo" aria-hidden="true">
+    <video class="bgVideo__vid" autoplay muted loop playsinline preload="auto">
+      <source src="ixdvisualiser2.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- background vibe -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__grid"></div>
+    <div class="bg__glow bg__glow--a"></div>
+    <div class="bg__glow bg__glow--b"></div>
+  </div>
+
+  <!-- TOP ERROR DROPDOWN (toast) -->
+  <div class="topToast" id="topToast" aria-live="polite" aria-hidden="true">
+    <div class="topToast__inner">
+      <span class="topToast__title">Error</span>
+      <span class="topToast__msg" id="topToastMsg">Please follow the steps in order.</span>
+    </div>
+  </div>
+
+  <!-- BOOT OVERLAY (Option A) -->
+  <div class="bootOverlay show" id="bootOverlay" aria-hidden="false">
+    <div class="bootCard">
+      <div class="bootTitle">Logging into instalkgram…</div>
+      <div class="bootSub" id="bootSub">Linking to stalk.ai</div>
+      <div class="bootBar" aria-hidden="true">
+        <div class="bootFill" id="bootFill"></div>
+      </div>
+      <div class="bootUser" id="bootUser"></div>
+    </div>
+  </div>
+
+  <!-- 960x540 STAGE -->
+  <main class="stage" role="main" aria-label="Instalkgram inspection stage">
+    <div class="stageInner">
+      <div class="app">
+
+        <!-- TOP BAR -->
+        <header class="topbar" role="banner">
+          <div class="brandnav" aria-label="Navigation">
+            <span class="brand">instalkgram</span>
+            <span class="sep">•</span>
+            <span class="navitem">feed</span>
+            <span class="sep">•</span>
+            <span class="navitem">discover</span>
+          </div>
+
+          <div class="progressWrap" aria-label="Progress">
+            <div class="progressMeta">
+              <span id="progressLabel">Profile 1 of 3</span>
+              <span class="userChip" id="userChip" aria-label="User"></span>
+            </div>
+
+            <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="progressFill" id="progressFill"></div>
+            </div>
+          </div>
+        </header>
+
+        <!-- MAIN -->
+        <div class="shell">
+
+          <!-- LEFT -->
+          <section class="leftPane" aria-label="Profile inspection area">
+            <h2 class="sectionTitle">People you may be interested in:</h2>
+
+            <article class="profileCard" aria-label="Profile card">
+              <!-- PFP -->
+              <button class="pfpBtn" id="pfpBtn" type="button" aria-label="Open profile picture inspection">
+                <img id="pfpImg" src="./ethanpfp.jpg" alt="Profile picture preview" />
+                <span class="pfpHint">Click to view</span>
+              </button>
+
+              <!-- META -->
+              <div class="profileMeta">
+                <div class="handleRow">
+                  <div class="handleCol">
+                    <span class="handle" id="handle">@ethantaniscool</span>
+
+                    <!-- stats injected by JS -->
+                    <div class="profileStats" id="profileStats" aria-label="Profile stats"></div>
+                  </div>
+
+                  <!-- ONLY ONE risk tag -->
+                  <span class="smallTag" id="riskTag">UNKNOWN</span>
+                </div>
+
+                <!-- PREVIEWS -->
+                <div class="previews">
+                  <button class="previewBox bioBox" id="bioPreviewBtn" type="button" aria-label="Open bio inspection">
+                    <div class="previewHeader">
+                      <span>Bio preview</span>
+                      <span class="chev" aria-hidden="true">↗</span>
+                    </div>
+                    <p class="previewText" id="bioPreviewText"></p>
+                    <div class="cutHint">Click to view full</div>
+                  </button>
+
+                  <button class="previewBox postsBox" id="postsPreviewBtn" type="button" aria-label="Open posts inspection">
+                    <div class="previewHeader">
+                      <span>Posts preview</span>
+                      <span class="chev" aria-hidden="true">↗</span>
+                    </div>
+                    <div class="postsStrip" id="postsStrip" aria-label="Post thumbnails preview"></div>
+                    <div class="cutHint" id="postsHint">3 posts • Click to view full</div>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- CTA (full width, bottom of left column) -->
+            <div class="ctaRow" aria-label="Final decision">
+              <button class="stalkBtn" id="stalkBtn" type="button" disabled>
+                Is this profile easy to stalk?
+              </button>
+            </div>
+          </section>
+
+          <!-- RIGHT -->
+          <aside class="rightPane" aria-label="Inspection steps and extracted info">
+            <div class="panelCard stepsPanel">
+              <h3 class="panelTitle">Inspection steps</h3>
+              <ol class="steps" aria-label="Tasks list">
+                <li class="step" id="stepPic">
+                  <span class="stepNum">Task 1</span>
+                  <span class="stepName">Inspect profile picture</span>
+                  <span class="stepTick" aria-hidden="true"></span>
+                </li>
+                <li class="step" id="stepBio">
+                  <span class="stepNum">Task 2</span>
+                  <span class="stepName">Inspect bio</span>
+                  <span class="stepTick" aria-hidden="true"></span>
+                </li>
+                <li class="step" id="stepPosts">
+                  <span class="stepNum">Task 3</span>
+                  <span class="stepName">Inspect posts</span>
+                  <span class="stepTick" aria-hidden="true"></span>
+                </li>
+              </ol>
+            </div>
+
+            <div class="panelCard extracted">
+              <h3 class="panelTitle">Extracted info</h3>
+              <ul class="facts" id="factsList" aria-label="Extracted information list">
+                <li class="muted">No info extracted yet. Start inspecting.</li>
+              </ul>
+            </div>
+          </aside>
+
+        </div><!-- /.shell -->
+
+        <!-- ROOKIE LOG -->
+        <section class="rookieDock" aria-label="Rookie log" aria-live="polite">
+          <div class="rookieDock__label">Rookie Log</div>
+          <p class="rookieDock__text" id="thoughtText"></p>
+        </section>
+
+      </div><!-- /.app -->
+    </div><!-- /.stageInner -->
+  </main>
+
+  <!-- MODALS -->
+  <div class="modal" id="inspectModal" aria-hidden="true" role="dialog" aria-label="Inspection modal">
+    <div class="modalBackdrop" data-close="1"></div>
+    <div class="modalCard" role="document">
+      <div class="modalTop">
+        <div class="modalTitleWrap">
+          <h3 class="modalTitle" id="modalTitle">Inspection</h3>
+          <p class="modalSub" id="modalSub">Stalk.ai scanning…</p>
+        </div>
+        <button class="iconBtn" id="modalCloseBtn" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <div class="scanStage" id="scanStage" aria-label="Scan area"></div>
+
+        <div class="aiBox" aria-label="Stalk.ai output">
+          <div class="aiHeader">
+            <span class="aiDot" aria-hidden="true"></span>
+            <span class="aiName">stalk.ai</span>
+          </div>
+          <div class="aiText" id="aiText">Scanning… please wait 3 seconds.</div>
+        </div>
+      </div>
+
+      <div class="modalBottom">
+        <button class="primaryBtn" id="modalDoneBtn" type="button" disabled>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="questionModal" aria-hidden="true" role="dialog" aria-label="Stalkability question modal">
+    <div class="modalBackdrop" data-close="1"></div>
+    <div class="modalCard" role="document">
+      <div class="modalTop">
+        <div class="modalTitleWrap">
+          <h3 class="modalTitle">Final check</h3>
+          <p class="modalSub" id="qSub">Based on the extracted info…</p>
+        </div>
+        <button class="iconBtn" id="qCloseBtn" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <div class="questionBox">
+          <p class="qText" id="qText">Is this profile easy to stalk?</p>
+          <div class="qBtns">
+            <button class="choiceBtn" id="choiceYes" type="button">YES</button>
+            <button class="choiceBtn" id="choiceNo" type="button">NO</button>
+          </div>
+          <p class="qFeedback" id="qFeedback" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="modalBottom">
+        <button class="primaryBtn" id="qNextBtn" type="button" disabled>Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIO (unique IDs only) -->
+  <audio id="dingSound" src="dingdingding.mp3" preload="auto"></audio>
+  <audio id="wrongSound" src="incorrect.mp3" preload="auto"></audio>
+  <audio id="scanSound" src="scanning.mp3" preload="auto" loop></audio>
+
+  <!-- FINAL TEST LOADING OVERLAY -->
+<div class="finalOverlay" id="finalOverlay" aria-hidden="true">
+  <div class="finalCard">
+    <div class="finalTitle">Final test incoming…</div>
+    <div class="finalSub">Locking answers. Preparing quiz.</div>
+    <div class="finalBar" aria-hidden="true">
+      <div class="finalFill" id="finalFill"></div>
+    </div>
+  </div>
+</div>
+
+  <script src="index2.js"></script>
+</body>
+</html>

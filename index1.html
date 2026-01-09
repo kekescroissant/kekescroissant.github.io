@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stranger Danger — Intro</title>
+  <link rel="stylesheet" href="index1.css" />
+</head>
+
+<body>
+  <div class="bgVideo" aria-hidden="true">
+    <video class="bgVideo__vid" autoplay muted loop playsinline>
+      <source src="ixdvisualiser2.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- BACKGROUND -->
+  <div class="bg">
+    <div class="bg__grid"></div>
+    <div class="bg__glow bg__glow--a"></div>
+    <div class="bg__glow bg__glow--b"></div>
+  </div>
+
+  <!-- FIXED STAGE -->
+  <main class="stage" role="main" aria-label="Stranger Danger pages">
+
+    <!-- PAGE 1: LANDING -->
+    <section class="page is-active" id="page-landing" aria-label="Landing page">
+      <div class="heroCard">
+        <div class="heroPill">
+          <span class="dot"></span>
+          <span>INTERACTIVE EXPERIENCE</span>
+        </div>
+
+        <h1 class="heroTitle">
+          <span class="heroTitle__top">STRANGER</span>
+          <span class="heroTitle__bottom">DANGER</span>
+        </h1>
+
+        <p class="heroSub">
+          POV: You’re the stranger. See how oversharing can lead to online harms — especially when strangers use AI tools.
+        </p>
+
+        <div class="heroBtns">
+          <button class="btn btn--primary" id="btnLetsPlay" type="button">
+            Let’s play! <span class="btnIcon">🎮</span>
+          </button>
+          <button class="btn btn--ghost" id="btnHowItWorks" type="button">
+            How it works
+          </button>
+        </div>
+
+        
+      </div>
+
+      <!-- HOW IT WORKS MODAL -->
+      <div class="modal" id="modalHow" aria-hidden="true">
+        <div class="modal__panel" role="dialog" aria-modal="true">
+          <h2 class="modal__title">How it works</h2>
+          <ul class="modal__list">
+            <li>Play as a “rookie predator” to learn how strangers think.</li>
+            <li>Use <b>Stalk.ai</b> to extract clues from public profiles.</li>
+            <li>Then you’ll switch perspective and learn safer choices.</li>
+          </ul>
+          <button class="btn btn--ghost modal__close" data-close-modal type="button">
+            Close
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2: INSTRUCTIONS -->
+    <section class="page" id="page-instructions" aria-label="Instructions page">
+      <div class="panel">
+        <div class="panelTop">
+          <div class="panelTop__left">
+            <span class="dot"></span>
+            <span class="panelTop__label">MISSION BRIEFING</span>
+          </div>
+          <div class="panelTop__right">ROOKIE MODE</div>
+        </div>
+
+        <div class="panelBody">
+          <h2 class="h2">Welcome, Rookie Predator.</h2>
+
+          <p class="typewriter" id="tw">
+            You’re entering Instalkgram as a rookie. Your job is to inspect public clues and decide if a profile is
+            <span class="hl">stalkable</span>.
+          </p>
+
+          <!-- ✅ BOTTOM LOCKED: ONLY ONE set of steps + reminder + buttons -->
+          <div class="panelBottom">
+            <div class="stepsGrid">
+              <div class="stepCard">
+                <div class="stepNum">1</div>
+                <div class="stepText">
+                  <div class="stepTitle">Enter Instalkgram</div>
+                  <div class="stepDesc">Log in and view what’s public.</div>
+                </div>
+              </div>
+
+              <div class="stepCard">
+                <div class="stepNum">2</div>
+                <div class="stepText">
+                  <div class="stepTitle">Use Stalk.ai</div>
+                  <div class="stepDesc">Scan photos, bios, and posts for clues.</div>
+                </div>
+              </div>
+
+              <div class="stepCard">
+                <div class="stepNum">3</div>
+                <div class="stepText">
+                  <div class="stepTitle">Make a call</div>
+                  <div class="stepDesc">Is this profile easily stalkable?</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="reminder">
+              <b>Message from the big boss:</b>
+              Good luck rookie. When in doubt, use stalk.ai.
+            </div>
+
+            <div class="panelBtns">
+              <button class="btn btn--ghost" id="btnBackToLanding" type="button">
+                Back
+              </button>
+              <button class="btn btn--primary" id="btnBeginMission" type="button">
+                Begin mission
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: LOGIN -->
+    <section class="page" id="page-login" aria-label="Instalkgram login page">
+      <div class="loginFrame">
+
+        <div class="sysbar">
+          <div class="sysbar__left">
+            <span class="sysIcon"></span>
+            <span class="sysText">INSTALKGRAM_OS // v.0.6.7</span>
+          </div>
+          <div class="sysbar__right">
+            <span class="sysTiny">SECURE_NET</span>
+            <span class="sysDot"></span>
+            <span class="sysTiny">MEM: 67%</span>
+            <span class="chip">ENCRYPTED</span>
+          </div>
+        </div>
+
+        <div class="loginCard">
+          <div class="lockBadge">
+            <span class="lockIcon">🔒</span>
+          </div>
+
+          <h2 class="loginTitle">Instalkgram</h2>
+          <p class="loginSub">Your favourite stalking platform</p>
+
+          <div class="field">
+            <label class="fieldLabel" for="targetId">TARGET ID</label>
+            <div class="fieldRow">
+              <span class="fieldIcon">👤</span>
+              <input
+                id="targetId"
+                class="fieldInput"
+                type="text"
+                placeholder="Enter username…"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <button class="loginBtn" id="btnSignIn" type="button">
+            <span class="loginBtnIcon">↳</span>
+            Sign In
+          </button>
+
+          <div class="loginMeta">
+            <span>STATUS: <b id="statusText">WAITING_FOR_INPUT</b></span>
+            <span>LATENCY: <b>67ms</b></span>
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main>
+
+  <script src="index1.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>STALK.AI — Rookie Camp Quiz</title>
+  <link rel="stylesheet" href="index3.css" />
+</head>
+
+<body>
+  <div class="bgVideo" aria-hidden="true">
+    <video class="bgVideo__vid" autoplay muted loop playsinline>
+      <source src="ixdvisualiser2.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Background -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__grid"></div>
+    <div class="bg__glow bg__glow--a"></div>
+    <div class="bg__glow bg__glow--b"></div>
+  </div>
+
+  <!-- 960x540 stage -->
+  <main class="stage" role="main" aria-label="Rookie Camp Quiz Stage">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topLeft">
+        <span class="dot"></span>
+        <span class="brand">STALK.AI</span>
+        <span class="pill">ROOKIE QUIZ</span>
+      </div>
+
+      <div class="topMid">
+        <div class="progressText">
+          <span>Progress:</span>
+          <b id="progressText">0/5</b>
+        </div>
+        <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+          <div class="progressFill" id="progressFill"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content area -->
+    <section class="card" aria-label="Quiz content">
+      <div class="cardInner">
+
+        <!-- LANDING -->
+        <section class="view is-active" id="view-landing" aria-label="Quiz landing">
+          <h1 class="title">Well done, Rookie!</h1>
+
+          <p class="sub">
+            You have successfully identified if those three profiles were <b>stalkable</b> or not.
+            <br> But there’s one last part to your initiation.
+          </p>
+
+          <hr class="rule" />
+
+          <p class="subone">
+            <b>Answer this quiz. Get all <b>5</b> correct and <b>graduate</b> from Rookie Camp.</b>
+          </p>
+
+          <div class="spacer"></div>
+
+          <div class="bottomRow">
+            <p class="tiny">Rules: You can only move forward when you’re correct.</p>
+
+            <button class="cta" id="btnStart" type="button">
+              Start Quiz <span class="arrow">→</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- QUIZ VIEW (re-used for all 5) -->
+        <section class="view" id="view-quiz" aria-label="Quiz question">
+          <div class="qHeader">
+            <div class="qKicker" id="qKicker">Question 1 of 5</div>
+            <h2 class="qTitle" id="qTitle">Question text</h2>
+            <p class="qSub" id="qSub">Short context line</p>
+          </div>
+
+          <div class="qBody">
+            <div class="choices" id="choices"></div>
+
+            <div class="aiPanel" aria-label="Stalk.ai feedback panel">
+              <div class="aiHead">
+                <span class="aiDot"></span>
+                <span class="aiName">stalk.ai</span>
+              </div>
+              <div class="aiText" id="aiText">
+                Choose an answer to continue.
+              </div>
+            </div>
+          </div>
+
+          <div class="qFooter">
+            <div class="statusLine" id="statusLine">
+              STATUS: <b class="status status--idle" id="statusText">WAITING_FOR_INPUT</b>
+            </div>
+
+            <button class="cta cta--ghost" id="btnNext" type="button" disabled>
+              Next <span class="arrow">→</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ENDING -->
+        <section class="view" id="view-end" aria-label="Quiz ending">
+          <h1 class="title">Congrats Rookie, <br> you have graduated!!!</h1>
+
+          <p class="sub">
+            Now you know how to detect if information is <b>safe</b> or <b>unsafe</b> to share on the internet.
+            <br>Especially with AI extensions like <b>stalk.ai</b>, it is so easy for people to harm you.
+          </p>
+
+          <hr class="rule" />
+
+          <p class="subtwo">
+            <b>Now you know. Don’t be unsafe. Bye!</b>
+          </p>
+
+          <div class="spacer"></div>
+
+          <div class="bottomRow">
+            <p class="tiny">file closed 🗂️</p>
+
+            <button class="cta" id="btnRestart" type="button">
+              Restart <span class="arrow">↺</span>
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- QUIZ SFX -->
+  <audio id="dingSound" src="dingdingding.mp3" preload="auto"></audio>
+  <audio id="wrongSound" src="incorrect.mp3" preload="auto"></audio>
+  <audio id="yaySound" src="trumpetyay.mp3" preload="auto"></audio>
+
+  <script src="index3.js"></script>
+</body>
+</html>
