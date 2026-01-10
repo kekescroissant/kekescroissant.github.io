@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `and decide if a profile is <span class="hl">easy to stalk</span>. ` +
       `Now, this is a HUGE first task for a rookie like you, but don't fret as Stalk.ai is here for you.
       Stalk.ai is an Artifical Intelligence extension to help you deduce if these profiles are easy to stalk or not.
-      But remember, Stalk.ai isn’t magic, it scans and deduced information based on what people share online.`;
+      But remember, Stalk.ai isn’t magic, it scans and deduces information based on what people share online.`;
 
     const raw = text;
     let i = 0;
